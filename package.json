@@ -3,7 +3,13 @@
   "version": "0.1.0",
   "description": "Validation functions on top of jsen",
   "main": "validate.js",
-  "scripts": {},
+  "scripts": {
+    "test": "edp test start --singleRun",
+    "doc": "esdoc -c esdoc.json",
+    "compile": "gulp",
+    "clean": "gulp clean",
+    "prepublish": "npm run compile"
+  },
   "edp": {
     "wwwroot": "/",
     "depDir": "dep",
@@ -22,5 +28,14 @@
   "author": "",
   "repository": "https://github.com/ecomfe/san-validation",
   "license": "MIT",
-  "readme": "README"
+  "readme": "README",
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-plugin-transform-es2015-modules-umd": "^6.8.0",
+    "babel-preset-es2015": "^6.9.0",
+    "edp": "^1.1.1",
+    "edp-test": "^1.1.1",
+    "esdoc": "^0.4.7",
+    "esdoc-es7-plugin": "0.0.3"
+  }
 }
