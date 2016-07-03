@@ -1,0 +1,26 @@
+{
+  "name": "san-validation",
+  "version": "0.1.0",
+  "description": "Validation functions on top of jsen",
+  "main": "validate.js",
+  "scripts": {},
+  "edp": {
+    "wwwroot": "/",
+    "depDir": "dep",
+    "srcDir": "src",
+    "loaderAutoConfig": "js,htm,html,tpl,vm,phtml",
+    "loaderUrl": "http://s1.bdstatic.com/r/www/cache/ecom/esl/1-8-2/esl.js",
+    "dependencies": {
+      "diffy-update": "~2.4.0",
+      "jsen": "~0.0.1"
+    }
+  },
+  "dependencies": {
+    "diffy-update": "^2.4.0",
+    "jsen": "^0.6.1"
+  },
+  "author": "",
+  "repository": "https://github.com/ecomfe/san-validation",
+  "license": "MIT",
+  "readme": "README"
+}
