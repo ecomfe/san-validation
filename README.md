@@ -191,15 +191,19 @@ let {isValid, errors} = validation(schema, message, {greedy: true})(product);
 import {withDefaultMessages} from 'san-validation';
 
 let messages = {
-    type: ({description}) => `${description}的类型不符`,
-    minLength: ({description, minLength}) => {
+    type({description}) {
+        return `${description}的类型不符`;
+    },
+
+    minLength({description, minLength}) {
         if (minLength === 1) {
             return `必须输入${description}`;
         }
 
         return `${description}不得小于${minLength}个字符`;
     },
-    ...
+
+    // ...
 };
 
 export default withDefaultMessages(messages);
