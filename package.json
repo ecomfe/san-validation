@@ -2,7 +2,7 @@
   "name": "san-validation",
   "version": "0.1.0",
   "description": "Validation functions on top of jsen",
-  "main": "validate.js",
+  "main": "validation.js",
   "scripts": {
     "test": "edp test start --singleRun",
     "doc": "esdoc -c esdoc.json",
@@ -17,12 +17,12 @@
     "loaderAutoConfig": "js,htm,html,tpl,vm,phtml",
     "loaderUrl": "http://s1.bdstatic.com/r/www/cache/ecom/esl/1-8-2/esl.js",
     "dependencies": {
-      "diffy-update": "~2.4.0",
+      "diffy-update": "2.x",
       "jsen": "~0.0.1"
     }
   },
   "dependencies": {
-    "diffy-update": "^2.4.0",
+    "diffy-update": "2.x",
     "jsen": "^0.6.1"
   },
   "author": "",
@@ -36,6 +36,12 @@
     "edp": "^1.1.1",
     "edp-test": "^1.1.1",
     "esdoc": "^0.4.7",
-    "esdoc-es7-plugin": "0.0.3"
+    "esdoc-es7-plugin": "0.0.3",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-clean": "^0.3.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.4"
   }
 }

@@ -227,3 +227,7 @@ export default class Form {
     }
 }
 ```
+
+## 基于源码构建
+
+除了包目录下的`validation.js`和`validation.min.js`外，可以直接基于`src`目录下的源码进行构建，需要使用babel及`es2015`预设集。
