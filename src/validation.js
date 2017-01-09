@@ -6,7 +6,7 @@
  * @module validation
  */
 
-import update from 'diffy-update';
+import {update} from 'san-update';
 import jsen from 'jsen';
 
 let format = (str, context) => str.replace(/\$\{(\w+)\}/g, (match, key) => context[key]);

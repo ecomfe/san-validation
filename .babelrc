@@ -1,5 +1,18 @@
 {
-    "presets": ["es2015"],
-    "plugins": ["transform-es2015-modules-umd"],
-    "ast": false
+    "env": {
+        "development": {
+            "presets": ["es2015"],
+            "plugins": ["transform-es2015-modules-umd"]
+        },
+        "production": {
+            "presets": ["es2015"],
+            "plugins": ["transform-es2015-modules-umd"]
+        },
+        "test": {
+            "presets": ["es2015"],
+            "plugins": [
+                "istanbul"
+            ]
+        }
+    }
 }

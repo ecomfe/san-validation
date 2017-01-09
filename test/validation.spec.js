@@ -1,8 +1,11 @@
-import validation, {withDefaultMessages} from 'validation';
+import 'babel-polyfill';
+import validation, {withDefaultMessages} from '../src/validation';
+import deepEqual from 'deep-eql';
+import {expect} from 'chai';
 
 describe('validation', () => {
     it('should be a function', () => {
-        expect(typeof validation).toBe('function');
+        expect(typeof validation).to.equal('function');
     });
 
     it('should pass validation for simple schema', () => {
@@ -18,8 +21,8 @@ describe('validation', () => {
             }
         };
         let {isValid, errors} = validation(schema)({id: 123, name: 'foo'});
-        expect(isValid).toBe(true);
-        expect(errors).toEqual([]);
+        expect(isValid).to.equal(true);
+        expect(deepEqual(errors, [])).to.equal(true);
     });
 
     it('should report validation errors', () => {
@@ -32,8 +35,8 @@ describe('validation', () => {
             }
         };
         let {isValid, errors} = validation(schema)({id: 'foo'});
-        expect(isValid).toBe(false);
-        expect(errors).toEqual([{path: 'id', keyword: 'type'}]);
+        expect(isValid).to.equal(false);
+        expect(deepEqual(errors, [{path: 'id', keyword: 'type'}])).to.equal(true);
     });
 
     it('should accept message schema', () => {
@@ -134,23 +137,27 @@ describe('validation', () => {
         };
 
         let {isValid, errors} = validation(schema, message, {greedy: true})(product);
-        expect(isValid).toBe(false);
-        expect(errors).toEqual([
-            {path: 'categoryId', keyword: 'type', message: 'Invalid category type'},
-            {path: 'tags', keyword: 'uniqueItems', message: 'Duplicate tags'},
-            {path: 'tags.0', keyword: 'maxLength', message: 'Each tag of product should have no more than 30 characters'},
-            {path: 'tags.1', keyword: 'maxLength', message: 'Each tag of product should have no more than 30 characters'},
-            {path: 'tags.2', keyword: 'type', message: 'tag of product should be strings'},
-            {path: 'sales.0.year', keyword: 'minimum', message: 'sales year is too early'},
-            {path: 'sales.0.month', keyword: 'maximum', message: 'sales month should fall within 1 - 12'},
-            {path: 'sales.0.quantity', keyword: 'minimum', message: 'Need a positive sales quantity'},
-        ]);
+        expect(isValid).to.equal(false);
+        let isEqual = deepEqual(
+            errors,
+            [
+                {path: 'categoryId', keyword: 'type', message: 'Invalid category type'},
+                {path: 'tags', keyword: 'uniqueItems', message: 'Duplicate tags'},
+                {path: 'tags.0', keyword: 'maxLength', message: 'Each tag of product should have no more than 30 characters'},
+                {path: 'tags.1', keyword: 'maxLength', message: 'Each tag of product should have no more than 30 characters'},
+                {path: 'tags.2', keyword: 'type', message: 'tag of product should be strings'},
+                {path: 'sales.0.year', keyword: 'minimum', message: 'sales year is too early'},
+                {path: 'sales.0.month', keyword: 'maximum', message: 'sales month should fall within 1 - 12'},
+                {path: 'sales.0.quantity', keyword: 'minimum', message: 'Need a positive sales quantity'},
+            ]
+        );
+        expect(isEqual).to.equal(true);
     })
 });
 
 describe('withDefaultMessages', () => {
     it('should be a function', () => {
-        expect(typeof withDefaultMessages).toBe('function');
+        expect(typeof withDefaultMessages).to.equal('function');
     });
 
     it('should fill default message on errors', () => {
@@ -187,12 +194,16 @@ describe('withDefaultMessages', () => {
         };
         let validate = withDefaultMessages(defaultMessages)(schema, null, {greedy: true});
         let {isValid, errors} = validate({id: 'invalid', firstName: 'foo', lastName: 'bar', roles: ['abcdefg']});
-        expect(isValid).toBe(false);
-        expect(errors).toEqual([
+        expect(isValid).to.equal(false);
+        let isEqual = deepEqual(
+            errors
+            [
             {path: 'id', keyword: 'type', message: 'id should be of type number'},
-            {path: 'firstName', keyword: 'minLength', message: 'first name should be no less than 10 characters'},
-            {path: 'lastName', keyword: 'minLength'},
-            {path: 'roles.0', keyword: 'maxLength', message: 'user role should be no longer than 4 characters'}
-        ]);
+                {path: 'firstName', keyword: 'minLength', message: 'first name should be no less than 10 characters'},
+                {path: 'lastName', keyword: 'minLength'},
+                {path: 'roles.0', keyword: 'maxLength', message: 'user role should be no longer than 4 characters'}
+            ]
+        );
+        expect(isEqual).to.equal(true);
     });
 })

@@ -4,7 +4,8 @@
   "description": "Validation functions on top of jsen",
   "main": "validation.js",
   "scripts": {
-    "test": "edp test start --singleRun",
+    "test": "cross-env NODE_ENV=test mocha",
+    "test-cov": "cross-env NODE_ENV=test nyc --reporter=text --reporter=html mocha",
     "doc": "esdoc -c esdoc.json",
     "compile": "gulp",
     "clean": "gulp clean",
@@ -17,24 +18,26 @@
     "loaderAutoConfig": "js,htm,html,tpl,vm,phtml",
     "loaderUrl": "http://s1.bdstatic.com/r/www/cache/ecom/esl/1-8-2/esl.js",
     "dependencies": {
-      "diffy-update": "2.x",
+      "san-update": "1.x",
       "jsen": "~0.0.1"
     }
   },
   "dependencies": {
-    "diffy-update": "2.x",
-    "jsen": "^0.6.1"
+    "jsen": "^0.6.1",
+    "san-update": "1.x"
   },
   "author": "",
   "repository": "https://github.com/ecomfe/san-validation",
   "license": "MIT",
   "readme": "README",
   "devDependencies": {
-    "babel": "^6.5.2",
+    "babel-polyfill": "^6.20.0",
+    "babel-plugin-istanbul": "^3.0.0",
     "babel-plugin-transform-es2015-modules-umd": "^6.8.0",
     "babel-preset-es2015": "^6.9.0",
-    "edp": "^1.1.1",
-    "edp-test": "^1.1.1",
+    "chai": "^3.5.0",
+    "cross-env": "^3.1.3",
+    "deep-eql": "^2.0.1",
     "esdoc": "^0.4.7",
     "esdoc-es7-plugin": "0.0.3",
     "gulp": "^3.9.1",
@@ -42,6 +45,8 @@
     "gulp-clean": "^0.3.2",
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^1.6.0",
-    "gulp-uglify": "^1.5.4"
+    "gulp-uglify": "^1.5.4",
+    "mocha": "^3.2.0",
+    "nyc": "^10.0.0"
   }
 }
